@@ -81,8 +81,8 @@ h3,
 h4,
 h5,
 h6 {
-    /*font-family: 'Oswald', sans-serif;*/
-    font-family: cocaColaFont;
+    font-family: 'Oswald', sans-serif;
+    /* font-family: cocaColaFont; */
 }
 
 #main_3d_image {
