@@ -29,8 +29,11 @@ class Controller
 
 	public static function getFragment($fragmentName)
 	{
+		// $model = new Model();
+		// $data = $model->getDataForPage($fragmentName);
+		$data = array("alertMessage" => "");
 		$load = new Load();
-		$load->viewFragment($fragmentName);
+		$load->viewFragment($fragmentName, $data);
 	}
 
 	// function apiCreateTable()
@@ -74,21 +77,5 @@ class Controller
 		// It is a separate model illustrating that you can have many models
 		ChromePhp::log($data);
 		$this->load->view('viewDrinks', $data);
-	}
-
-	// Old test methods to test the MVC design pattern
-	function dbCreateTable()
-	{
-		echo "Create Table Function";
-	}
-
-	function dbInsertData()
-	{
-		echo "Data Insert Function";
-	}
-
-	function dbGetData()
-	{
-		echo "Data Read Function";
 	}
 }

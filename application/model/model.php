@@ -17,13 +17,18 @@ class Model
 				PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
 				PDO::ATTR_EMULATE_PREPARES => false,
 			));
-			// $this->dbhandle->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			// echo 'Database connection created</br></br>';
+			$this->dbhandle->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			echo 'Database connection created</br></br>';
 		} catch (PDOEXception $e) {
 			echo "I'm sorry, Martin. I'm afraid I can't connect to the database!";
 			// Generate an error message if the connection fails
 			print new Exception($e->getMessage());
 		}
+	}
+
+	public function getDbHandle()
+	{
+		return $this->dbhandle;
 	}
 
 	// This is a simple fix to represent, what would in reality be, a table in the database containing the brand names. 
@@ -38,37 +43,43 @@ class Model
 	public function dbCreateTable()
 	{
 		try {
-			$this->dbhandle->exec("CREATE TABLE Model_3D (Id INTEGER PRIMARY KEY, brand TEXT, x3dModelTitle TEXT, x3dCreationMethod TEXT, modelTitle TEXT, modelSubtitle TEXT, modelDescription TEXT)");
-			return "Model_3D table is successfully created inside test1.db file";
-		} catch (PD0EXception $e) {
-			print new Exception($e->getMessage());
+			$this->dbhandle->exec("CREATE TABLE IF NOT EXISTS Model_3D (Id INTEGER PRIMARY KEY, brand TEXT, x3dModelTitle TEXT, x3dCreationMethod TEXT, modelTitle TEXT, modelSubtitle TEXT, modelDescription TEXT)");
+			$this->dbhandle->exec("CREATE TABLE IF NOT EXISTS SPA_PAGES (Id INTEGER PRIMARY KEY, page_name TEXT, title TEXT, body TEXT)");
+			return "Tables have been successfully created inside test1.db file";
+		} catch (Exception $e) {
+			return $e->getMessage();
 		}
 		$this->dbhandle = NULL;
 	}
 
-	public function dbInsertData()
-	{
-		try {
-			$this->dbhandle->exec(
-				"INSERT INTO Model_3D (Id, brand, x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription) 
-				VALUES (1, 'Coke', 'X3D Coke Model', 'string_2', 'string_3','string_4','string_5'); " .
-					"INSERT INTO Model_3D (Id, brand, x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription) 
-				VALUES (2, 'Sprite', 'X3D Sprite Model', 'string_2', 'string_3','string_4','string_5'); " .
-					"INSERT INTO Model_3D (Id, brand, x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription) 
-				VALUES (3, 'Fanta', 'X3D Fanta Model', 'string_2', 'string_3','string_4','string_5'); " .
-					"INSERT INTO Model_3D (Id, brand, x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription) 
-				VALUES (4, 'Coke Light', 'X3D Coke Light Model', 'string_2', 'string_3','string_4','string_5'); " .
-					"INSERT INTO Model_3D (Id, brand, x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription) 
-				VALUES (5, 'Coke Zero', 'X3D Coke Zero Model', 'string_2', 'string_3','string_4','string_5'); " .
-					"INSERT INTO Model_3D (Id, brand, x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription) 
-				VALUES (6, 'Dr Pepper', 'X3D Dr Pepper Model', 'string_2', 'string_3','string_4','string_5'); "
-			);
-			return "X3D model data inserted successfully inside test1.db";
-		} catch (PD0EXception $e) {
-			print new Exception($e->getMessage());
-		}
-		$this->dbhandle = NULL;
-	}
+	// public function dbInsertData()
+	// {
+	// 	try {
+	// 		$this->dbhandle->exec(
+	// 			"INSERT INTO Model_3D (Id, brand, x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription) 
+	// 			VALUES (1, 'Coke', 'X3D Coke Model', 'string_2', 'string_3','string_4','string_5'); " .
+	// 				"INSERT INTO Model_3D (Id, brand, x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription) 
+	// 			VALUES (2, 'Sprite', 'X3D Sprite Model', 'string_2', 'string_3','string_4','string_5'); " .
+	// 				"INSERT INTO Model_3D (Id, brand, x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription) 
+	// 			VALUES (3, 'Fanta', 'X3D Fanta Model', 'string_2', 'string_3','string_4','string_5'); " .
+	// 				"INSERT INTO Model_3D (Id, brand, x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription) 
+	// 			VALUES (4, 'Coke Light', 'X3D Coke Light Model', 'string_2', 'string_3','string_4','string_5'); " .
+	// 				"INSERT INTO Model_3D (Id, brand, x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription) 
+	// 			VALUES (5, 'Coke Zero', 'X3D Coke Zero Model', 'string_2', 'string_3','string_4','string_5'); " .
+	// 				"INSERT INTO Model_3D (Id, brand, x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription) 
+	// 			VALUES (6, 'Dr Pepper', 'X3D Dr Pepper Model', 'string_2', 'string_3','string_4','string_5'); "
+	// 		);
+	// 		$this->dbhandle->exec(
+	// 			"INSERT INTO SPA_PAGES (Id, page_name, title, body) 
+	// 			VALUES (1, 'statement_of_originality', 'Statement of Originality', 'These web pages are submitted as part requirement for the degree of MSc in Advanced Computer Science at the University of Sussex. They are the product of my own labour except where indicated in the web page content. These web pages or contents may be freely copied and distributed provided the source is acknowledged.');"
+	// 		);
+
+	// 		return "X3D model data inserted successfully inside test1.db";
+	// 	} catch (PD0EXception $e) {
+	// 		print new Exception($e->getMessage());
+	// 	}
+	// 	$this->dbhandle = NULL;
+	// }
 
 	public function dbGetData()
 	{
@@ -96,6 +107,23 @@ class Model
 				//increment the row index
 				$i++;
 			}
+		} catch (PD0EXception $e) {
+			print new Exception($e->getMessage());
+		}
+		// Close the database connection
+		$this->dbhandle = NULL;
+		// Send the response back to the view
+		return $result;
+	}
+
+	public function getDataForPage($pageName)
+	{
+		$sql = 'SELECT * FROM SPA_PAGES WHERE page_name LIKE ' . $pageName;
+		// Use PDO query() to query the database with the prepared SQL statement
+		$stmt = $this->dbhandle->query($sql);
+		// Set up an array to return the results to the view
+		$result = $stmt->fetch();
+		try {
 		} catch (PD0EXception $e) {
 			print new Exception($e->getMessage());
 		}
