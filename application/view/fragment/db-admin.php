@@ -5,23 +5,9 @@
     $(() => {
         $("div.db-admin-buttons > button").on('click', function() {
             var actionUrl = $(this).attr('data-action-url');
-            sendRequest(actionUrl);
+            sendRequest("api/db/" + actionUrl, replaceSPAContent);
         });
     });
-
-    function sendRequest(actionUrl) {
-        $.ajax({
-            type: "GET",
-            url: "index.php/api/db/" + actionUrl,
-            dataType: "text",
-            success: function(result, status, xhr) {
-                replaceSPAContent(result);
-            },
-            error: function(xhr, status, error) {
-                alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
-            }
-        });
-    }
 </script>
 <h2>Database available actions</h2>
 <div class="list-group db-admin-buttons">

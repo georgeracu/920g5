@@ -14,12 +14,12 @@ class DBController
     function apiCreateTable()
     {
         $data = array("alertMessage" => $this->model->createTables());
-        $this->load->viewFragment('db_admin', $data);
+        $this->load->viewFragment('db-admin', $data);
     }
     function apiInsertData()
     {
         $data = array("alertMessage" => $this->model->dbInsertData());
-        $this->load->viewFragment('db_admin', $data);
+        $this->load->viewFragment('db-admin', $data);
     }
     function apiGetData()
     {
@@ -30,13 +30,13 @@ class DBController
     function truncateDatabase()
     {
         $data = array("alertMessage" => $this->model->truncateDatabase());
-        $this->load->viewFragment('db_admin', $data);
+        $this->load->viewFragment('db-admin', $data);
     }
 
     function dropDatabase()
     {
         $data = array("alertMessage" => $this->model->dropDatabase());
-        $this->load->viewFragment('db_admin', $data);
+        $this->load->viewFragment('db-admin', $data);
     }
 
     function getSPAPage($pageName)

@@ -86,11 +86,15 @@ class DBModel
                 "INSERT INTO Model_3D (brand, x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription) 
 				VALUES ('Dr Pepper', 'X3D Dr Pepper Model', 'string_2', 'string_3','string_4','string_5');",
             "INSERT INTO SPA_PAGES (page_name, title, body) 
-				VALUES ('statement_of_originality', 'Statement of Originality', 'These web pages are submitted as part requirement for the degree of MSc in Advanced Computer Science at the University of Sussex. They are the product of my own labour except where indicated in the web page content. These web pages or contents may be freely copied and distributed provided the source is acknowledged.');",
+				VALUES ('statement-of-originality', 'Statement of Originality', 'These web pages are submitted as part requirement for the degree of MSc in Advanced Computer Science at the University of Sussex. They are the product of my own labour except where indicated in the web page content. These web pages or contents may be freely copied and distributed provided the source is acknowledged.');",
             "INSERT INTO SPA_PAGES (page_name, title, body) 
 				VALUES ('main', 'Statement of Originality', '');",
             "INSERT INTO SPA_PAGES (page_name, title, body) 
-				VALUES ('db_admin', 'Database admin screen', '');"
+				VALUES ('db-admin', 'Database admin screen', '');",
+            "INSERT INTO SPA_PAGES (page_name, title, body) 
+				VALUES ('references', 'References', 'No reference to be displayed');",
+            "INSERT INTO SPA_PAGES (page_name, title, body) 
+				VALUES ('about', 'About', '');"
         );
         try {
             foreach ($dbSeed as $stmt) {

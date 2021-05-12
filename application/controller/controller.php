@@ -36,30 +36,6 @@ class Controller
 		$load->viewFragment($fragmentName, $data);
 	}
 
-	// function apiCreateTable()
-	// {
-	//   	// echo "Create table function";
-	// 	$data = $this->model->dbCreateTable();
-	// 	$this->load->view('viewMessage', $data);
-	// }
-	// function apiInsertData()
-	// {
-	// 	$data = $this->model->dbInsertData();
-	//    	$this->load->view('viewMessage', $data);
-	// }  
-	// function apiGetData()
-	// {
-	// 	$data = $this->model->dbGetData();
-	// 	$this->load->view('view3DAppData', $data);
-	// }  
-
-	// New methods for Part C of Lab 7 Tutorial, which use AJAX
-	// Flickr API
-	// function apiGetFlickrService()
-	// {
-	// 	$this->load->view('viewFlickrFeed');
-	// }
-
 	// API call to read JSON data from a JSON file
 	function apiGetJson()
 	{

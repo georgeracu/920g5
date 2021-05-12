@@ -6,20 +6,15 @@ $(() => {
         console.log("Loading SPA view with id " + id);
         loadSPAPage(id);
     })
+    $('ul.footer-links > li').on('click', function () {
+        var id = $(this).attr('data-action-url');
+        console.log("Loading SPA view with id " + id);
+        loadSPAPage(id);
+    })
 });
 
 function loadSPAPage(pageName) {
-    $.ajax({
-        type: "GET",
-        url: "index.php/api/get-spa-page?" + pageName,
-        dataType: "text",
-        success: function (result, status, xhr) {
-            replaceSPAContent(result);
-        },
-        error: function (xhr, status, error) {
-            alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
-        }
-    });
+    sendRequest("api/get-spa-page?" + pageName, replaceSPAContent);
 }
 
 function replaceSPAContent(newContent) {
@@ -30,13 +25,16 @@ function replaceSPAContent(newContent) {
 }
 
 function loadFragment(viewName) {
-    // call the server to load the new data
+    sendRequest("api/get-fragment?" + viewName, replaceSPAContent);
+}
+
+function sendRequest(url, successCallback) {
     $.ajax({
         type: "GET",
-        url: "index.php/api/get-fragment?" + viewName,
+        url: "index.php/" + url,
         dataType: "text",
         success: function (result, status, xhr) {
-            replaceSPAContent(result);
+            successCallback(result);
         },
         error: function (xhr, status, error) {
             alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
