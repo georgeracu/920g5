@@ -15,6 +15,18 @@ $(() => {
 
 function loadSPAPage(pageName) {
     sendRequest("api/get-spa-page?" + pageName, replaceSPAContent);
+    clearActiveMenuItems(pageName);
+    setActiveMenuItem(pageName);
+}
+
+function setActiveMenuItem(itemName) {
+    console.log("Adding CSS class");
+    $("ul.navbar-nav > li").find("[data-spa-name='" + itemName + "']").addClass('active');
+}
+
+function clearActiveMenuItems() {
+    console.log("Removing CSS class");
+    $("ul.navbar-nav > li > a").removeClass('active');
 }
 
 function replaceSPAContent(newContent) {

@@ -8,7 +8,10 @@ class Load
 		$this->fragmentMap = array(
 			"about" => "generic",
 			"statement-of-originality" => "generic",
-			"references" => "generic"
+			"references" => "generic",
+			"coca-cola" => "drink",
+			"sprite" => "drink",
+			"dr-pepper" => "drink"
 		);
 	}
 

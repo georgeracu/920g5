@@ -1,3 +1,14 @@
+<div class="col-sm-12">
+    <div id="main_3d_image">
+        <div id="main_text" class="col-xs-12 col-sm-4">
+            <h2>Coca Cola Great Britain</h2>
+            <h3>Founded by Dr John S Pemberton</h3>
+            <p>The Coca Cola Company is the world's leading manufacturer, marketer and distributor of
+                non-alcoholic beverage
+                concentrates and syrups, and produces nearly 400 brands.</p>
+        </div>
+    </div>
+</div>
 <div class="card-deck col-sm-12 text-center">
     <div class="card mb-4 shadow-sm">
         <div class="card-header">
