@@ -5,13 +5,13 @@
 
 @font-face {
     font-family: OpenSans;
-    src: url("../assets/fonts/Open_Sans/OpenSans-Regular.ttf") format("truetype");
+    src: url("./../assets/fonts/Open_Sans/OpenSans-Regular.ttf") format("truetype");
 }
 
-@font-face {
+/* @font-face {
     font-family: Oswald;
-    src: url("../assets/fonts/Oswald/static/Oswald-Regular.ttf") format("truetype");
-}
+    src: url("./../assets/fonts/OSWALD.otf") format("otf");
+} */
 
 /* Small devices (landscape phones, 576px and up)*/
 @media (min-width: 576px) {
@@ -81,7 +81,9 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Open Sans',
+        sans-serif;
+    /* font-family: 'Oswald', sans-serif; */
     /* font-family: cocaColaFont; */
 }
 
@@ -339,7 +341,6 @@ footer {
     height: 200px;
 }
 
-X3D,
 x3d {
     position: relative;
     float: left;
@@ -350,5 +351,5 @@ x3d {
     border-radius: 5px;
     border: 1px solid rgba(255, 0, 0, 1.0);
     width: 100%;
-    height: 100%
+    height: 100%;
 }

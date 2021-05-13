@@ -1,26 +1,17 @@
+<script type="text/javascript" src="./scripts/js/x3dom.js"></script>
+<link rel="stylesheet" type='text/css' href="./css/x3dom.css" rel="stylesheet">
 <div class="row">
-
     <div class="col-sm-9">
         <div class="card text-left">
             <div class="card-header">
-                <ul class="nav nav-tabs card-header-tabs">
-                    <li class="nav-item">
-                        <a href="coke.html" class="nav-link active">Coke</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="sprite.html" class="nav-link">Sprite</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="pepper.html" class="nav-link">Dr. Pepper</a>
-                    </li>
-                </ul>
+                Coca-Cola
             </div>
             <div class="card-body">
                 <h4 class="card-title">Coca-Cola X3D Model</h4>
                 <div id="model3D">
                     <x3d>
                         <scene>
-                            <inline url="assets/coke-can.x3d"> </inline>
+                            <inline url="./assets/x3d/coke-can.x3d"> </inline>
                         </scene>
                     </x3d>
                 </div>
