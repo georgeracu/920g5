@@ -53,3 +53,8 @@ function sendRequest(url, successCallback) {
         }
     });
 }
+
+function toggleLight() {
+    var currentState = $("#spot").attr("on");
+    console.log(currentState);
+}

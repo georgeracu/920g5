@@ -92,10 +92,10 @@
             </div>
             <div class="card mb-4 shadow-sm">
                 <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">Sprite</h4>
+                    <h4 class="my-0 font-weight-normal">Costa Coffee</h4>
                 </div>
                 <div class="card-body">
-                    <img src="./assets/images/sprite.jpg" alt="Sprite">
+                    <img src="./assets/images/costa-coffee.jpg" alt="Costa Coffee">
                     <p>
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
                         been the industry's standard
@@ -103,16 +103,16 @@
                         it to make a type specimen
                         book.
                     </p>
-                    <button type="button" class="btn btn-lg btn-block btn-primary"><a href="https://www.coca-cola.co.uk/drinks/sprite/sprite">Find out more
+                    <button type="button" class="btn btn-lg btn-block btn-primary"><a href="https://www.coca-colacompany.com/brands/costa-coffee">Find out more
                             ...</a></button>
                 </div>
             </div>
             <div class="card mb-4 shadow-sm">
                 <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">Dr. Pepper</h4>
+                    <h4 class="my-0 font-weight-normal">Georgia Coffee</h4>
                 </div>
                 <div class="card-body">
-                    <img src="./assets/images/dr_pepper.jpg" alt="Dr. Pepper">
+                    <img src="./assets/images/georgia-coffee.jpg" alt="Georgia Coffee">
                     <p>
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
                         been the industry's standard
@@ -120,7 +120,7 @@
                         it to make a type specimen
                         book.
                     </p>
-                    <button type="button" class="btn btn-lg btn-block btn-primary"><a href="https://www.coca-cola.co.uk/drinks/dr-pepper/dr-pepper">Find out more
+                    <button type="button" class="btn btn-lg btn-block btn-primary"><a href="https://www.coca-colacompany.com/brands/georgia-coffee">Find out more
                             ...</a></button>
                 </div>
             </div>

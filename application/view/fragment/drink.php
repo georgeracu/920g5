@@ -21,6 +21,7 @@
                         <a href="#" class="btn btn-danger btn-responsive camera-font">Right</a>
                         <a href="#" class="btn btn-warning btn-responsive camera-font">Top</a>
                         <a href="#" class="btn btn-outline-dark disabled btn-responsive camera-font">Off</a>
+                        <button class="btn btn-outline-dark btn-responsive camera-font" id="toggle-light">Toggle light</button>
                         <a href="<?php echo './assets/x3d/' . $data['page_name'] . '.x3d' ?>" download="" class="btn btn-outline-dark btn-responsive camera-font">Download X3D</a>
                         <a href="<?php echo './assets/blender/' . $data['page_name'] . '.blend' ?>" download="" class="btn btn-outline-dark btn-responsive camera-font">Download Blender</a>
 
@@ -32,7 +33,6 @@
                             <inline url="<?php echo './assets/x3d/' . $data['page_name'] . '.x3d' ?>"> </inline>
                         </scene>
                         <SpotLight id='spot' on="TRUE" beamWidth='0.9' color='0 0 1' cutOffAngle='0.78' location='0 0 12' radius='22'> </SpotLight>
-
                     </x3d>
                 </div>
             </div>
@@ -50,16 +50,16 @@
             </div>
             <div class="card-body">
                 <h4 class="card-tile">3D Image Gallery</h4>
-                <a href="coke.html">
+                <a href="#">
                     <img src="assets/images/coca_cola.jpg" class="card-img-top img-fluid img-thumbnail" alt="Coca-Cola">
                 </a>
-                <a href="sprite.html">
-                    <img src="assets/images/sprite.jpg" class="card-img-top img-fluid img-thumbnail" alt="Sprite">
+                <a href="#">
+                    <img src="assets/images/costa-coffee.jpg" class="card-img-top img-fluid img-thumbnail" alt="Costa Coffee">
                 </a>
-                <a href="coke.html">
-                    <img src="assets/images/dr_pepper.jpg" class="card-img-top img-fluid img-thumbnail" alt="Dr. Pepper">
+                <a href="#">
+                    <img src="assets/images/georgia-coffee.jpg" class="card-img-top img-fluid img-thumbnail" alt="Georgia Coffee">
                 </a>
-                <p class="card-text">These 3D images of the Coke can, Sprite bottle and Dr. Pepper cup are
+                <p class="card-text">These 3D images of the Coke can, Costa Coffee cup and Georgia Coffee bottle are
                     rendered in Blender</p>
             </div>
         </div>
