@@ -61,4 +61,10 @@ class DBController
     {
         $this->load->viewFragment($fragmentName);
     }
+
+    function getNavBar()
+    {
+        echo $this->model->getNavBar();
+        // $this->load->viewFragment('json', $data);
+    }
 }

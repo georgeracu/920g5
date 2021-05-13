@@ -17,7 +17,7 @@ class DBModel
                 \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC
             ));
             // $this->dbHandle->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo 'Database connection created</br></br>';
+            // echo 'Database connection created</br></br>';
         } catch (\PDOEXception $e) {
             echo "I'm sorry, I'm afraid I can't connect to the database!";
             // Generate an error message if the connection fails
@@ -69,7 +69,7 @@ class DBModel
     {
         $dbSeed = array(
             "INSERT INTO Model_3D (page_name, brand, x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription) 
-				VALUES ('coca-cola', 'Coke', 'X3D Coke Model', 'string_2', 'string_3','string_4','string_5'); " .
+				VALUES ('coca-cola', 'Coca-Cola', 'X3D Coke Model', 'string_2', 'string_3','string_4','string_5'); " .
                 "INSERT INTO Model_3D (page_name, brand, x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription) 
 				VALUES ('costa', 'Costa', 'X3D Costa Model', 'string_2', 'string_3','string_4','string_5'); " .
                 "INSERT INTO Model_3D (page_name, brand, x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription) 
@@ -120,7 +120,7 @@ class DBModel
 
         try {
             $result = $query->fetch();
-            var_dump($result);
+            // var_dump($result);
             return $result;
         } catch (PDOEXception $e) {
             print new Exception($e->getMessage());
@@ -145,5 +145,34 @@ class DBModel
         }
         // Close the database connection
         $this->dbHandle = NULL;
+    }
+
+    public function getNavBar()
+    {
+        try {
+            // Prepare a statement to get all records from the Model_3D table
+            $sql = 'SELECT * FROM Model_3D';
+            // Use PDO query() to query the database with the prepared SQL statement
+            $stmt = $this->dbHandle->query($sql);
+            // Set up an array to return the results to the view
+            $result = null;
+            // Set up a variable to index each row of the array
+            $i = -0;
+            // Use PDO fetch() to retrieve the results from the database using a while loop
+            // Use a while loop to loop through the rows	
+            while ($data = $stmt->fetch()) {
+                $result[$i]['brand'] = $data['brand']; // Not used in the view, instead using the fake dbGetBrand() function above
+                $result[$i]['page-name'] = $data['page_name'];
+                //increment the row index
+                $i++;
+            }
+            return json_encode($result);
+        } catch (PDOEXception $e) {
+            print new Exception($e->getMessage());
+        }
+        // Close the database connection
+        $this->dbHandle = NULL;
+        // Send the response back to the view
+        return '{}';
     }
 }

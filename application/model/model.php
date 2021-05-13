@@ -18,7 +18,7 @@ class Model
 				PDO::ATTR_EMULATE_PREPARES => false,
 			));
 			$this->dbhandle->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			echo 'Database connection created</br></br>';
+			// echo 'Database connection created</br></br>';
 		} catch (PDOEXception $e) {
 			echo "I'm sorry, Martin. I'm afraid I can't connect to the database!";
 			// Generate an error message if the connection fails

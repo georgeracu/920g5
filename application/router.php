@@ -14,7 +14,7 @@ $substrLength = 17;
 
 $pageURI = substr($pageURI, $substrLength);
 
-var_dump($pageURI . " | " . $queryString);
+// var_dump($pageURI . " | " . $queryString);
 
 $dbController = new DBController();
 $apiController = new ApiController();
@@ -43,5 +43,7 @@ else if ($pageURI == 'api/get-spa-page')
 	$dbController->getSPAPage($queryString);
 else if ($pageURI == 'api/get-json-from-table')
 	$apiController->getJsonFromTable($queryString);
+else if ($pageURI == 'api/get-nav-bar')
+	$dbController->getNavBar();
 else
 	new NotFoundController($pageURI);

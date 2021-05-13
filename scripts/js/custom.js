@@ -1,11 +1,7 @@
 $(() => {
+    renderNavBar();
     loadSPAPage('main');
     $('[data-toggle="popover"]').popover();
-    $('.spa-nav').on('click', function () {
-        var id = $(this).attr('data-spa-name');
-        console.log("Loading SPA view with id " + id);
-        loadSPAPage(id);
-    })
     $('ul.footer-links > li').on('click', function () {
         var id = $(this).attr('data-action-url');
         console.log("Loading SPA view with id " + id);
@@ -57,4 +53,32 @@ function sendRequest(url, successCallback) {
 function toggleLight() {
     var currentState = $("#spot").attr("on");
     console.log(currentState);
+}
+
+function addNavbarElement(dataFields) {
+    console.log(dataFields);
+    dataFields.forEach(element => $("ul.navbar-nav").append("<li class='nav-item'><a class='nav-link spa-nav' href='#' data-spa-name='" + element['page-name'] + "'>" + element['brand'] + "</a></li >"));
+    attachEventToNavbar();
+}
+
+function renderNavBar() {
+    $.ajax({
+        type: "GET",
+        url: "index.php/api/get-nav-bar",
+        dataType: "json",
+        success: function (result, status, xhr) {
+            addNavbarElement(result);
+        },
+        error: function (xhr, status, error) {
+            alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+        }
+    });
+}
+
+function attachEventToNavbar() {
+    $('.spa-nav').on('click', function () {
+        var id = $(this).attr('data-spa-name');
+        console.log("Loading SPA view with id " + id);
+        loadSPAPage(id);
+    })
 }
