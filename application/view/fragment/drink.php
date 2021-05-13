@@ -21,7 +21,8 @@
                         <a href="#" class="btn btn-danger btn-responsive camera-font">Right</a>
                         <a href="#" class="btn btn-warning btn-responsive camera-font">Top</a>
                         <a href="#" class="btn btn-outline-dark disabled btn-responsive camera-font">Off</a>
-                        <a href="#" class="btn btn-outline-dark btn-responsive camera-font">Download X3D</a>
+                        <a href="<?php echo './assets/x3d/' . $data['page_name'] . '.x3d' ?>" download="" class="btn btn-outline-dark btn-responsive camera-font">Download X3D</a>
+                        <a href="<?php echo './assets/blender/' . $data['page_name'] . '.blend' ?>" download="" class="btn btn-outline-dark btn-responsive camera-font">Download Blender</a>
 
                     </div>
                 </div>
