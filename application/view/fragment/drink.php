@@ -4,10 +4,27 @@
     <div class="col-sm-9">
         <div class="card text-left">
             <div class="card-header">
-                Coca-Cola
+                <?php echo $data['brand'] ?>
             </div>
             <div class="card-body">
-                <h4 class="card-title">Coca-Cola X3D Model</h4>
+                <h4 class="card-title"><?php echo $data['x3dModelTitle'] ?></h4>
+                <p class="card-text">
+                    This X3D model has been created in Blender 2.8.
+                </p>
+                <h5 class="card-subtitle">Camera Views</h5>
+                <div class="camera-btns">
+                    <p class="card-select">These buttons select a range of X3D model viewpoints</p>
+                    <div class="btn-group">
+                        <a href="#" class="btn btn-primary btn-responsive camera-font">Front</a>
+                        <a href="#" class="btn btn-secondary btn-responsive camera-font">Back</a>
+                        <a href="#" class="btn btn-success btn-responsive camera-font">Left</a>
+                        <a href="#" class="btn btn-danger btn-responsive camera-font">Right</a>
+                        <a href="#" class="btn btn-warning btn-responsive camera-font">Top</a>
+                        <a href="#" class="btn btn-outline-dark disabled btn-responsive camera-font">Off</a>
+                        <a href="#" class="btn btn-outline-dark btn-responsive camera-font">Download X3D</a>
+
+                    </div>
+                </div>
                 <div id="model3D">
                     <x3d>
                         <scene>
@@ -17,21 +34,7 @@
                 </div>
             </div>
 
-            <p class="card-text">
-                This X3D model of the coke can has been created in Blender
-            </p>
-            <h5 class="card-subtitle">Camera Views</h5>
-            <div class="camera-btns">
-                <p class="card-select">These buttons select a range of X3D model viewpoints</p>
-                <div class="btn-group">
-                    <a href="#" class="btn btn-primary btn-responsive camera-font">Front</a>
-                    <a href="#" class="btn btn-secondary btn-responsive camera-font">Back</a>
-                    <a href="#" class="btn btn-success btn-responsive camera-font">Left</a>
-                    <a href="#" class="btn btn-danger btn-responsive camera-font">Right</a>
-                    <a href="#" class="btn btn-warning btn-responsive camera-font">Top</a>
-                    <a href="#" class="btn btn-outline-dark disabled btn-responsive camera-font">Off</a>
-                </div>
-            </div>
+
             <button type="button" class="btn btn-lg btn-block btn-primary"><a href="https://www.coca-cola.co.uk/drinks/coca-cola/coca-cola" target="_blank">Find out
                     more
                     ...</a></button>

@@ -43,7 +43,7 @@ class Model
 	public function dbCreateTable()
 	{
 		try {
-			$this->dbhandle->exec("CREATE TABLE IF NOT EXISTS Model_3D (Id INTEGER PRIMARY KEY, brand TEXT, x3dModelTitle TEXT, x3dCreationMethod TEXT, modelTitle TEXT, modelSubtitle TEXT, modelDescription TEXT)");
+			$this->dbhandle->exec("CREATE TABLE IF NOT EXISTS Model_3D (Id INTEGER PRIMARY KEY, page_name TEXT, brand TEXT, x3dModelTitle TEXT, x3dCreationMethod TEXT, modelTitle TEXT, modelSubtitle TEXT, modelDescription TEXT)");
 			$this->dbhandle->exec("CREATE TABLE IF NOT EXISTS SPA_PAGES (Id INTEGER PRIMARY KEY, page_name TEXT, title TEXT, body TEXT)");
 			return "Tables have been successfully created inside test1.db file";
 		} catch (Exception $e) {
@@ -52,69 +52,40 @@ class Model
 		$this->dbhandle = NULL;
 	}
 
-	// public function dbInsertData()
+	// public function dbGetData()
 	// {
 	// 	try {
-	// 		$this->dbhandle->exec(
-	// 			"INSERT INTO Model_3D (Id, brand, x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription) 
-	// 			VALUES (1, 'Coke', 'X3D Coke Model', 'string_2', 'string_3','string_4','string_5'); " .
-	// 				"INSERT INTO Model_3D (Id, brand, x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription) 
-	// 			VALUES (2, 'Sprite', 'X3D Sprite Model', 'string_2', 'string_3','string_4','string_5'); " .
-	// 				"INSERT INTO Model_3D (Id, brand, x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription) 
-	// 			VALUES (3, 'Fanta', 'X3D Fanta Model', 'string_2', 'string_3','string_4','string_5'); " .
-	// 				"INSERT INTO Model_3D (Id, brand, x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription) 
-	// 			VALUES (4, 'Coke Light', 'X3D Coke Light Model', 'string_2', 'string_3','string_4','string_5'); " .
-	// 				"INSERT INTO Model_3D (Id, brand, x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription) 
-	// 			VALUES (5, 'Coke Zero', 'X3D Coke Zero Model', 'string_2', 'string_3','string_4','string_5'); " .
-	// 				"INSERT INTO Model_3D (Id, brand, x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription) 
-	// 			VALUES (6, 'Dr Pepper', 'X3D Dr Pepper Model', 'string_2', 'string_3','string_4','string_5'); "
-	// 		);
-	// 		$this->dbhandle->exec(
-	// 			"INSERT INTO SPA_PAGES (Id, page_name, title, body) 
-	// 			VALUES (1, 'statement_of_originality', 'Statement of Originality', 'These web pages are submitted as part requirement for the degree of MSc in Advanced Computer Science at the University of Sussex. They are the product of my own labour except where indicated in the web page content. These web pages or contents may be freely copied and distributed provided the source is acknowledged.');"
-	// 		);
-
-	// 		return "X3D model data inserted successfully inside test1.db";
+	// 		// Prepare a statement to get all records from the Model_3D table
+	// 		$sql = 'SELECT * FROM Model_3D';
+	// 		// Use PDO query() to query the database with the prepared SQL statement
+	// 		$stmt = $this->dbhandle->query($sql);
+	// 		// Set up an array to return the results to the view
+	// 		$result = null;
+	// 		// Set up a variable to index each row of the array
+	// 		$i = -0;
+	// 		// Use PDO fetch() to retrieve the results from the database using a while loop
+	// 		// Use a while loop to loop through the rows	
+	// 		while ($data = $stmt->fetch()) {
+	// 			// Don't worry about this, it's just a simple test to check we can output a value from the database in a while loop
+	// 			// echo '</br>' . $data['x3dModelTitle'];
+	// 			// Write the database conetnts to the results array for sending back to the view
+	// 			$result[$i]['brand'] = $data['brand']; // Not used in the view, instead using the fake dbGetBrand() function above
+	// 			$result[$i]['x3dModelTitle'] = $data['x3dModelTitle'];
+	// 			$result[$i]['x3dCreationMethod'] = $data['x3dCreationMethod'];
+	// 			$result[$i]['modelTitle'] = $data['modelTitle'];
+	// 			$result[$i]['modelSubtitle'] = $data['modelSubtitle'];
+	// 			$result[$i]['modelDescription'] = $data['modelDescription'];
+	// 			//increment the row index
+	// 			$i++;
+	// 		}
 	// 	} catch (PD0EXception $e) {
 	// 		print new Exception($e->getMessage());
 	// 	}
+	// 	// Close the database connection
 	// 	$this->dbhandle = NULL;
+	// 	// Send the response back to the view
+	// 	return $result;
 	// }
-
-	public function dbGetData()
-	{
-		try {
-			// Prepare a statement to get all records from the Model_3D table
-			$sql = 'SELECT * FROM Model_3D';
-			// Use PDO query() to query the database with the prepared SQL statement
-			$stmt = $this->dbhandle->query($sql);
-			// Set up an array to return the results to the view
-			$result = null;
-			// Set up a variable to index each row of the array
-			$i = -0;
-			// Use PDO fetch() to retrieve the results from the database using a while loop
-			// Use a while loop to loop through the rows	
-			while ($data = $stmt->fetch()) {
-				// Don't worry about this, it's just a simple test to check we can output a value from the database in a while loop
-				// echo '</br>' . $data['x3dModelTitle'];
-				// Write the database conetnts to the results array for sending back to the view
-				$result[$i]['brand'] = $data['brand']; // Not used in the view, instead using the fake dbGetBrand() function above
-				$result[$i]['x3dModelTitle'] = $data['x3dModelTitle'];
-				$result[$i]['x3dCreationMethod'] = $data['x3dCreationMethod'];
-				$result[$i]['modelTitle'] = $data['modelTitle'];
-				$result[$i]['modelSubtitle'] = $data['modelSubtitle'];
-				$result[$i]['modelDescription'] = $data['modelDescription'];
-				//increment the row index
-				$i++;
-			}
-		} catch (PD0EXception $e) {
-			print new Exception($e->getMessage());
-		}
-		// Close the database connection
-		$this->dbhandle = NULL;
-		// Send the response back to the view
-		return $result;
-	}
 
 	public function getDataForPage($pageName)
 	{

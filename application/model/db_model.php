@@ -27,17 +27,15 @@ class DBModel
 
     public function dropDatabase()
     {
-        $db = $this->createDBConnection();
         try {
-            $db->exec("DROP TABLE IF EXISTS Model_3D");
-            $db->exec("DROP TABLE IF EXISTS SPA_PAGES");
+            $this->dbHandle->exec("DROP TABLE IF EXISTS Model_3D");
+            $this->dbHandle->exec("DROP TABLE IF EXISTS SPA_PAGES");
             return "All tables have been dropped!";
         } catch (Exception $e) {
             return $e->getMessage();
         }
-        $db = NULL;
 
-        // $this->dbHandle = NULL;
+        $this->dbHandle = NULL;
     }
 
     public function truncateDatabase()
@@ -50,22 +48,19 @@ class DBModel
     public function createTables()
     {
         $commands = array(
-            "CREATE TABLE IF NOT EXISTS Model_3D (Id INTEGER PRIMARY KEY AUTOINCREMENT, brand TEXT, x3dModelTitle TEXT, x3dCreationMethod TEXT, modelTitle TEXT, modelSubtitle TEXT, modelDescription TEXT)",
+            "CREATE TABLE IF NOT EXISTS Model_3D (Id INTEGER PRIMARY KEY AUTOINCREMENT, page_name TEXT, brand TEXT, x3dModelTitle TEXT, x3dCreationMethod TEXT, modelTitle TEXT, modelSubtitle TEXT, modelDescription TEXT)",
             "CREATE TABLE IF NOT EXISTS SPA_PAGES (Id INTEGER PRIMARY KEY AUTOINCREMENT, page_name TEXT, title TEXT, body TEXT)"
         );
-        $db = $this->createDBConnection();
 
         foreach ($commands as $command) {
             try {
-                $db->exec($command);
+                $this->dbHandle->exec($command);
             } catch (PDOException $e) {
                 print new Exception($e->getMessage());
             }
         }
 
-        $db = NULL;
-
-        // $this->dbHandle = NULL;
+        $this->dbHandle = NULL;
 
         return "All tables have been created";
     }
@@ -73,18 +68,12 @@ class DBModel
     public function dbInsertData()
     {
         $dbSeed = array(
-            "INSERT INTO Model_3D (brand, x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription) 
-				VALUES ('Coke', 'X3D Coke Model', 'string_2', 'string_3','string_4','string_5'); " .
-                "INSERT INTO Model_3D (brand, x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription) 
-				VALUES ('Sprite', 'X3D Sprite Model', 'string_2', 'string_3','string_4','string_5'); " .
-                "INSERT INTO Model_3D (brand, x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription) 
-				VALUES ('Fanta', 'X3D Fanta Model', 'string_2', 'string_3','string_4','string_5'); " .
-                "INSERT INTO Model_3D (brand, x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription) 
-				VALUES ('Coke Light', 'X3D Coke Light Model', 'string_2', 'string_3','string_4','string_5'); " .
-                "INSERT INTO Model_3D (brand, x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription) 
-				VALUES ('Coke Zero', 'X3D Coke Zero Model', 'string_2', 'string_3','string_4','string_5'); " .
-                "INSERT INTO Model_3D (brand, x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription) 
-				VALUES ('Dr Pepper', 'X3D Dr Pepper Model', 'string_2', 'string_3','string_4','string_5');",
+            "INSERT INTO Model_3D (page_name, brand, x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription) 
+				VALUES ('coca-cola', 'Coke', 'X3D Coke Model', 'string_2', 'string_3','string_4','string_5'); " .
+                "INSERT INTO Model_3D (page_name, brand, x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription) 
+				VALUES ('sprite', 'Sprite', 'X3D Sprite Model', 'string_2', 'string_3','string_4','string_5'); " .
+                "INSERT INTO Model_3D (page_name, brand, x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription) 
+				VALUES ('fanta', 'Fanta', 'X3D Fanta Model', 'string_2', 'string_3','string_4','string_5'); ",
             "INSERT INTO SPA_PAGES (page_name, title, body) 
 				VALUES ('statement-of-originality', 'Statement of Originality', 'These web pages are submitted as part requirement for the degree of MSc in Advanced Computer Science at the University of Sussex. They are the product of my own labour except where indicated in the web page content. These web pages or contents may be freely copied and distributed provided the source is acknowledged.');",
             "INSERT INTO SPA_PAGES (page_name, title, body) 
@@ -110,13 +99,7 @@ class DBModel
 
     public function getSPAPage($pageName)
     {
-        $db = new \PDO($this->dsn, '', '', array(
-            \PDO::ATTR_EMULATE_PREPARES => false,
-            \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
-            \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC
-        ));
-
-        $query = $db->prepare("SELECT * FROM SPA_PAGES WHERE page_name LIKE :pageName");
+        $query = $this->dbHandle->prepare("SELECT * FROM SPA_PAGES WHERE page_name LIKE :pageName");
         $query->execute(['pageName' => $pageName]);
 
         try {
@@ -125,24 +108,24 @@ class DBModel
             print new Exception($e->getMessage());
         }
 
-        $db = NULL;
+        $this->dbHandle = NULL;
     }
 
-    private function execCmds($cmds)
+    public function get3DPageData($pageName)
     {
-        foreach ($cmds as $command) {
-            $this->dbHandle->exec($command);
+        // Prepare a statement to get all records from the Model_3D table
+        $query = $this->dbHandle->prepare("SELECT * FROM Model_3D WHERE page_name LIKE :pageName");
+        // Use PDO query() to query the database with the prepared SQL statement
+        $query->execute(['pageName' => $pageName]);
+
+        try {
+            $result = $query->fetch();
+            var_dump($result);
+            return $result;
+        } catch (PDOEXception $e) {
+            print new Exception($e->getMessage());
         }
-    }
-
-    private function createDBConnection()
-    {
-        $db = new \PDO($this->dsn, '', '', array(
-            \PDO::ATTR_EMULATE_PREPARES => false,
-            \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
-            \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC
-        ));
-
-        return $db;
+        // Close the database connection
+        $this->dbHandle = NULL;
     }
 }

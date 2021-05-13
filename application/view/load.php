@@ -11,7 +11,8 @@ class Load
 			"references" => "generic",
 			"coca-cola" => "drink",
 			"sprite" => "drink",
-			"dr-pepper" => "drink"
+			"dr-pepper" => "drink",
+			"fanta" => "drink"
 		);
 	}
 

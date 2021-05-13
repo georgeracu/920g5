@@ -41,7 +41,19 @@ class DBController
 
     function getSPAPage($pageName)
     {
-        $data = $this->model->getSPAPage($pageName);
+        $threeDPages = array("coca-cola", "sprite", "dr-pepper");
+        $data = NULL;
+        if (in_array($pageName, $threeDPages)) {
+            $data = $this->model->get3DPageData($pageName);
+        } else {
+            $data = $this->model->getSPAPage($pageName);
+        }
+        $this->load->viewFragment($pageName, $data);
+    }
+
+    function get3DPage($pageName)
+    {
+        $data = $this->model->get3DPageData($pageName);
         $this->load->viewFragment($pageName, $data);
     }
 
