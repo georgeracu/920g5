@@ -28,7 +28,7 @@
                 <div id="model3D">
                     <x3d>
                         <scene>
-                            <inline url="./assets/x3d/coke-can.x3d"> </inline>
+                            <inline url="<?php echo './assets/x3d/' . $data['page_name'] . '.x3d' ?>"> </inline>
                         </scene>
                     </x3d>
                 </div>
