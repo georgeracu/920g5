@@ -21,6 +21,10 @@ $apiController = new ApiController();
 
 if (!$pageURI)
 	new Controller('home');
+else if ($pageURI === '')
+	new Controller('home');
+else if ($pageURI == '/')
+	new Controller('home');
 else if ($pageURI == 'api/get-json')
 	new Controller('apiGetJson');
 else if ($pageURI == 'createJson')
