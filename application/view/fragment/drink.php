@@ -31,6 +31,8 @@
                         <scene>
                             <inline url="<?php echo './assets/x3d/' . $data['page_name'] . '.x3d' ?>"> </inline>
                         </scene>
+                        <SpotLight id='spot' on="TRUE" beamWidth='0.9' color='0 0 1' cutOffAngle='0.78' location='0 0 12' radius='22'> </SpotLight>
+
                     </x3d>
                 </div>
             </div>

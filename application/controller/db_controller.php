@@ -41,7 +41,7 @@ class DBController
 
     function getSPAPage($pageName)
     {
-        $threeDPages = array("coca-cola", "sprite", "dr-pepper");
+        $threeDPages = array("coca-cola", "sprite", "dr-pepper", "costa", "georgia-coffee");
         $data = NULL;
         if (in_array($pageName, $threeDPages)) {
             $data = $this->model->get3DPageData($pageName);

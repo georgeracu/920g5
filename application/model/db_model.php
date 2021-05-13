@@ -71,9 +71,9 @@ class DBModel
             "INSERT INTO Model_3D (page_name, brand, x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription) 
 				VALUES ('coca-cola', 'Coke', 'X3D Coke Model', 'string_2', 'string_3','string_4','string_5'); " .
                 "INSERT INTO Model_3D (page_name, brand, x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription) 
-				VALUES ('sprite', 'Sprite', 'X3D Sprite Model', 'string_2', 'string_3','string_4','string_5'); " .
+				VALUES ('costa', 'Costa', 'X3D Costa Model', 'string_2', 'string_3','string_4','string_5'); " .
                 "INSERT INTO Model_3D (page_name, brand, x3dModelTitle, x3dCreationMethod, modelTitle, modelSubtitle, modelDescription) 
-				VALUES ('fanta', 'Fanta', 'X3D Fanta Model', 'string_2', 'string_3','string_4','string_5'); ",
+				VALUES ('georgia-coffee', 'Georgia Coffee', 'X3D Georgia Coffee Model', 'string_2', 'string_3','string_4','string_5'); ",
             "INSERT INTO SPA_PAGES (page_name, title, body) 
 				VALUES ('statement-of-originality', 'Statement of Originality', 'These web pages are submitted as part requirement for the degree of MSc in Advanced Computer Science at the University of Sussex. They are the product of my own labour except where indicated in the web page content. These web pages or contents may be freely copied and distributed provided the source is acknowledged.');",
             "INSERT INTO SPA_PAGES (page_name, title, body) 
@@ -124,6 +124,24 @@ class DBModel
             return $result;
         } catch (PDOEXception $e) {
             print new Exception($e->getMessage());
+        }
+        // Close the database connection
+        $this->dbHandle = NULL;
+    }
+
+    public function getAllFromTable($tableName)
+    {
+        $query = $this->dbHandle->prepare("SELECT * FROM :tableName");
+        $query->execute(['tableName' => $tableName]);
+
+        try {
+            $result = $query->fetch();
+            if (isset($result)) {
+                return json_encode($result, JSON_FORCE_OBJECT);
+            }
+            return '{}';
+        } catch (PDOEXception $e) {
+            return new Exception($e->getMessage());
         }
         // Close the database connection
         $this->dbHandle = NULL;

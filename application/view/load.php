@@ -12,7 +12,9 @@ class Load
 			"coca-cola" => "drink",
 			"sprite" => "drink",
 			"dr-pepper" => "drink",
-			"fanta" => "drink"
+			"fanta" => "drink",
+			"costa" => "drink",
+			"georgia-coffee" => "drink"
 		);
 	}
 
